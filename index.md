@@ -2,6 +2,8 @@
 layout: default
 ---
 
+(setq markdown-css-paths '("./style.css"))
+
 # Welcome to a fun page
 
 
