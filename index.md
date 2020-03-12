@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<link href="style.css" rel="stylesheet"></link>
+<link href="style.css" rel="stylesheet">
 
 # Welcome to a fun page
 

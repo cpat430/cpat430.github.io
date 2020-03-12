@@ -13,4 +13,25 @@
     background-color: lightgray;
     padding: 35px;
     color: green;
-  }
+}
+
+.gameContainer > .blue {
+    background-color: blue;
+    color: white;
+    padding: 20px;
+    font-size: 48px;
+}
+  
+.gameContainer > .red {
+    background-color: red;
+    color: white;
+    padding: 20px;
+    font-size: 48px;
+}
+
+.gameContainer > .gray {
+    background-color: gray;
+    color: purple;
+    padding: 24px;
+    font-size: 24px;
+}
