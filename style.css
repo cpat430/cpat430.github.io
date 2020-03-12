@@ -6,3 +6,11 @@
     border: 5px solid blue;
     text-align: center;
 }
+
+.game_container > div {
+    border: 2px solid blue;
+    border-radius: 25px;
+    background-color: lightgray;
+    padding: 35px;
+    color: green;
+  }
