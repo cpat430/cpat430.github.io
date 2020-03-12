@@ -2,6 +2,8 @@
 layout: default
 ---
 
+<link href="style.css" rel="stylesheet"></link>
+
 # Welcome to a fun page
 
 [Link to another page](./another-page.html).

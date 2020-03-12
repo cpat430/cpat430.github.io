@@ -22,5 +22,15 @@ function play() {
     canvas.style.border = "1px solid";
 
     parent.appendChild(canvas);
+
+    // var grid_pane = document.createElement('grid_pane');
+
+    // grid_pane.style.width = '33%';
+
+    // for (var i = 0; i < 9; i++) {
+    //     text += cars[i] + "<br>";
+    // }
+
+
 }
 play();
