@@ -12,5 +12,15 @@ function play() {
     //     console.log('Player X won, restarting game...');
     //     setTimeout(reset, 3000);
     // }
+
+    var parent = document.getElementById('content');
+    var canvas = document.createElement('canvas');
+
+    canvas.style.width = '100%';
+    canvas.height = canvas.width;
+
+    canvas.style.border = "1px solid";
+
+    parent.appendChild(canvas);
 }
 play();

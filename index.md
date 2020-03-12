@@ -2,14 +2,14 @@
 layout: default
 ---
 
-(setq markdown-css-paths '("./style.css"))
-
 # Welcome to a fun page
 
 
 [Link to another page](./another-page.html).
 
 [Link to test](./test.md).
+
+<div width="auto" id="content"> </div>
 
 <!-- Create the tic tac toe board -->
 <section id="game_grid" class="game_container display_none">
@@ -25,3 +25,6 @@ layout: default
   <div class="item item-8" id='eight'>item-8</div>
   <div class="item item-9" id='nine'>item-9</div>
 </section>
+
+
+<script src=js/script.js></script>
