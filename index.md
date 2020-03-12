@@ -10,7 +10,10 @@ layout: default
 
 [Link to test](./test.md).
 
-<div width="auto" id="content"> </div>
+<div width="auto" id="content"> 
+    <canvas id="ttt"></canvas>
+    <p id="message">Welcome to tic-tac-toe!</p>
+</div>
 
 <!-- Create the tic tac toe board -->
 <section id="game_grid" class="game_container display_none">
