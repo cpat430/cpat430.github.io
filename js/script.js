@@ -1,7 +1,33 @@
-console.log('Hello world');
+function set_up() {
+    // var parent = document.getElementById('content');
+    // var canvas = document.createElement('canvas');
 
-function button_click(event) {
-    alert("button clicked" + this.id + " woo");
+    // canvas.style.width = '100%';
+    // canvas.height = canvas.width;
+
+    // canvas.style.border = "1px solid";
+
+    // parent.appendChild(canvas);
+
+    // document.getElementById("button").addEventListener("click", button_click());
+    // let parent = document.getElementById('content');
+    let canvas = document.getElementById('ttt'), 
+        ctx = canvas.getContext('2d'), 
+        msg = document.getElementById('message'), 
+        cell_size = 100;
+        map = [
+            1,0,0,
+            0,1,0,
+            -1,0,-1
+        ];
+        win_patterns = [
+            0b111000000, 0b000111000, 0b000000111,
+            0b100100100, 0b010010010, 0b001001001,
+            0b100010001, 0b001010100
+        ];
+        BLANK = 0, X = 1, O = -1;
+
+    canvas.width = canvas.height = 3 * cell_size;
 }
 
 function draw() {
@@ -79,38 +105,6 @@ function get_cell_coordinates(cell) {
         'x': x,
         'y': y,
     };
-}
-
-function set_up() {
-    // var parent = document.getElementById('content');
-    // var canvas = document.createElement('canvas');
-
-    // canvas.style.width = '100%';
-    // canvas.height = canvas.width;
-
-    // canvas.style.border = "1px solid";
-
-    // parent.appendChild(canvas);
-
-    // document.getElementById("button").addEventListener("click", button_click());
-    // let parent = document.getElementById('content');
-    let canvas = document.getElementById('ttt'), 
-        ctx = canvas.getContext('2d'), 
-        msg = document.getElementById('message'), 
-        cell_size = 100;
-        map = [
-            1,0,0,
-            0,1,0,
-            -1,0,-1
-        ];
-        win_patterns = [
-            0b111000000, 0b000111000, 0b000000111,
-            0b100100100, 0b010010010, 0b001001001,
-            0b100010001, 0b001010100
-        ];
-        BLANK = 0, X = 1, O = -1;
-
-    canvas.width = canvas.height = 3 * cell_size;
 }
 
 function play() {
