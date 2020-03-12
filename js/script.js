@@ -40,7 +40,7 @@ function draw() {
 
     function draw_board() {
         
-        ctx.strokeStyle = 'white';
+        ctx.strokeStyle = 'black';
         ctx.lineWidth = 10;
 
         ctx.beginPath();
@@ -65,7 +65,7 @@ function draw() {
     }
 
     function fill_board() {
-        ctx.strokeStyle = 'white';
+        ctx.strokeStyle = 'black';
         ctx.lineWidth = 5;
         for (let i = 0; i < map.length; i++) {
             let coords = get_cell_coordinates(i)
