@@ -4,7 +4,6 @@ layout: default
 
 # Welcome to a fun page
 
-
 [Link to another page](./another-page.html).
 
 [Link to test](./test.md).
@@ -27,4 +26,4 @@ layout: default
 </section>
 
 
-<script src=js/script.js></script>
+"<script src=js/script.js></script>"
