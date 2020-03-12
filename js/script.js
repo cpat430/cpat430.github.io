@@ -1,17 +1,4 @@
-function set_up() {
-    // var parent = document.getElementById('content');
-    // var canvas = document.createElement('canvas');
-
-    // canvas.style.width = '100%';
-    // canvas.height = canvas.width;
-
-    // canvas.style.border = "1px solid";
-
-    // parent.appendChild(canvas);
-
-    // document.getElementById("button").addEventListener("click", button_click());
-    // let parent = document.getElementById('content');
-    let canvas = document.getElementById('ttt'), 
+let canvas = document.getElementById('ttt'), 
         ctx = canvas.getContext('2d'), 
         msg = document.getElementById('message'), 
         cell_size = 100;
@@ -27,7 +14,22 @@ function set_up() {
         ];
         BLANK = 0, X = 1, O = -1;
 
-    canvas.width = canvas.height = 3 * cell_size;
+canvas.width = canvas.height = 3 * cell_size;
+
+function set_up() {
+    // var parent = document.getElementById('content');
+    // var canvas = document.createElement('canvas');
+
+    // canvas.style.width = '100%';
+    // canvas.height = canvas.width;
+
+    // canvas.style.border = "1px solid";
+
+    // parent.appendChild(canvas);
+
+    // document.getElementById("button").addEventListener("click", button_click());
+    // let parent = document.getElementById('content');
+    
 }
 
 function draw() {
