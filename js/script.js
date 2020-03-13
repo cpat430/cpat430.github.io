@@ -13,8 +13,19 @@ let canvas = document.getElementById('ttt'),
             0b100010001, 0b001010100
         ];
         BLANK = 0, X = 1, O = -1;
+        mouse = {
+            x: -1,
+            y: -1
+        };
 
 canvas.width = canvas.height = 3 * cell_size;
+
+canvas.addEventListener('mousemove', function(e) {
+    let x = e.pageX - canvas.offsetLeft,
+        y = e.pageY - canvas.offsetTop;
+
+    console.log(x,y);
+});
 
 function set_up() {
     // var parent = document.getElementById('content');
@@ -105,7 +116,7 @@ function get_cell_coordinates(cell) {
 
     return {
         'x': x,
-        'y': y,
+        'y': y
     };
 }
 
