@@ -29,4 +29,4 @@ layout: default
 </body>
 
 
-<script src="js/tttscript.js"></script>
+<script src="./js/tttscript.js"></script>
