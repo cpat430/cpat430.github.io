@@ -11,19 +11,19 @@ layout: default
 [Link to test](./test.md).
 <body>
     <div class="row">
-        <div class="col">X</div>
-        <div class="col">X</div>
-        <div class="col">X</div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
     </div>
     <div class="row">
-        <div class="col">X</div>
-        <div class="col">X</div>
-        <div class="col">X</div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
     </div>
     <div class="row">
-        <div class="col">X</div>
-        <div class="col">X</div>
-        <div class="col">X</div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
     </div>
     <div id="restart">Restart</div>
 </body>
