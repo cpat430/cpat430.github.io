@@ -28,5 +28,6 @@ layout: default
     <div id="restart">Restart</div>
 </body>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script src="./js/tttscript.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/tttscript.js"></script>
