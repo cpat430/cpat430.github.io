@@ -2,20 +2,33 @@
 layout: default
 ---
 
-<!-- <link href="style.css" rel="stylesheet"> -->
+<link href="tttstyle.css" rel="stylesheet">
 
 # Welcome to a fun page
 
 [Link to home page](./index.md).
 
 [Link to test](./test.md).
+<body>
+    <div class="row">
+        <div class="col">X</div>
+        <div class="col">X</div>
+        <div class="col">X</div>
+    </div>
+    <div class="row">
+        <div class="col">X</div>
+        <div class="col">X</div>
+        <div class="col">X</div>
+    </div>
+    <div class="row">
+        <div class="col">X</div>
+        <div class="col">X</div>
+        <div class="col">X</div>
+    </div>
+    <div id="restart">Restart</div>
+</body>
 
-<div align="center" width="auto" id="content"> 
-    <canvas id="ttt"></canvas>
-    <p id="message">Welcome to tic-tac-toe!</p>
-</div>
-
-<!-- Create the tic tac toe board -->
+<!-- Create the tic tac toe board
 <section id="game_grid" class="game_container display_none">
   <div class="button button-1" id='one'>button-1</div>
   <div class="button button-2" id='two'>button-2</div>
@@ -28,7 +41,7 @@ layout: default
   <div class="button button-7" id='seven'>button-7</div>
   <div class="button button-8" id='eight'>button-8</div>
   <div class="button button-9" id='nine'>button-9</div>
-</section>
+</section> -->
 
 
-<script src="js/script.js"></script>
+<script src="js/tttscript.js"></script>
