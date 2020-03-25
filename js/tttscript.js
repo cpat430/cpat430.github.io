@@ -9,6 +9,6 @@ $(document).ready(function() {
     ];
 
     $('.col').click(function() {
-        $(this).html(PLAYER_TOKEN);
+        $(this).md(PLAYER_TOKEN);
     });
 })
