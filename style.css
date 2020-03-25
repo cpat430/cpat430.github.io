@@ -8,7 +8,7 @@
 }
 
 .game_container > div {
-    border: 2px solid blue;
+    border: 2px solid rgb(17, 17, 214);
     border-radius: 25px;
     background-color: lightgray;
     padding: 35px;

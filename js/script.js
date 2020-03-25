@@ -115,8 +115,8 @@ function get_cell_coordinates(cell) {
         y = Math.floor(cell / 3) * cell_size;
 
     return {
-        'x': x,
-        'y': y
+        'x': x+111,
+        'y': y+260
     };
 }
 
