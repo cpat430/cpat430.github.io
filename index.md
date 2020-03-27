@@ -12,6 +12,8 @@ layout: default
 
 [Link to tic-tac-toe](./ttt.md).
 
+[Link to tens](./tens/index.md).
+
 <div align="center" width="auto" id="content"> 
     <canvas id="ttt"></canvas>
     <p id="message">Welcome to tic-tac-toe!</p>
