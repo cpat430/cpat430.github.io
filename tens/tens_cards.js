@@ -7,6 +7,10 @@ class Card {
         this.suit = suit;
         this.value = value;
     }
+
+    to_string() {
+        return this.value + " " + this.suit;
+    }
 }
 
 class Deck {
@@ -46,6 +50,31 @@ class Deck {
     }
 }
 
+class Player {
+    constructor(position) {
+        this.position = position;
+        this.hand = [];
+    }
+
+    // can play a card
+    play(card) {
+        console.log('Played ' + card.to_string());
+    }
+}
+
 let deck = new Deck();
 deck.create_deck(suits, values)
-console.log(deck.shuffle_deck());
+
+// put cards in hand
+let player_1 = new Player(1);
+player_1.hand = deck.deal();
+
+player_1.play(player_1.hand[0]);
+
+let players = 4,
+    tricks = 0,
+    game = {
+        players: [],
+        game_over: false
+    },
+    i = players;
