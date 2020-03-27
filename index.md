@@ -6,11 +6,11 @@ layout: default
 
 # Welcome to a fun page
 
-[Link to another page](./another-page.html).
+[Link to test](./test).
 
-[Link to test](./test.md).
+[Link to tic-tac-toe](./ttt).
 
-[Link to tic-tac-toe](./ttt.md).
+[Link to tens](./tens/index).
 
 <div align="center" width="auto" id="content"> 
     <canvas id="ttt"></canvas>

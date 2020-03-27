@@ -6,9 +6,8 @@ layout: default
 
 # Welcome to a fun page
 
-[Link to home page](./index.md).
+[Link to home page](./index).
 
-[Link to test](./test.md).
 <body>
     <div class="row">
         <div class="col"></div>
