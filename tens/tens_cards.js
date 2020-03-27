@@ -38,7 +38,7 @@ class Deck {
     deal() {
         let hand = [];
 
-        while (hand.length < 2) {
+        while (hand.length < 13) {
             hand.push(this.deck.pop());
         }
 
