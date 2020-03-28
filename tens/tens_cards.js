@@ -1,18 +1,11 @@
-var readline = require('readline-sync');
-
 // create a readline interface for reading input from user
-const prompt = require('prompt');
-
-prompt.start();
-
-function onErr(err) {
-    console.log(err);
-    return 1;
-}
+var readline = require('readline-sync');
 
 // create the suits and the card values to create a deck of cards
 let suits = ['Spades', 'Clubs', 'Diamonds', 'Hearts'];
 let values = [2,3,4,5,6,7,8,9,10,11,12,13,14];
+const num_players = 4;
+const max_score = 13;
 
 class Card {
     constructor(suit, value) {
@@ -76,7 +69,8 @@ class Player {
     constructor(position) {
         this.position = position;
         this.hand = [];
-        this.tricks = 0;
+        this.tricks = [];
+        this.tens = 0;
     }
 
     get_trump() {
@@ -88,7 +82,7 @@ class Player {
 
         console.log(p1.hand);
 
-        var index = -1;
+        let index = -1;
 
         // ensures one trump is chosen
         while (index == -1) {
@@ -111,6 +105,7 @@ class Player {
 class Trick {
     constructor() {
         this.cards = [];
+        this.tens = 0;
     }
 
     get_suit() {
@@ -118,21 +113,25 @@ class Trick {
     }
 
     // gets the winner assuming all cards played are valid
-    get_winner() {
+    get_winner(first) {
         var cards = this.cards,
             card,
             suit,
             best = cards[0],
-            player = 1;
+            player = first;
 
         suit = cards[0].suit;
 
-        console.log(best);
+        if (cards[0].value == 10) {
+            this.tens++;
+        }
 
         for (let i = 1; i < cards.length; i++) {
             card = cards[i];
 
-            console.log(card);
+            if (card.value == 10) {
+                this.tens++;
+            }
 
             // if the first card is not a trump
             if (suit != trump) {
@@ -140,30 +139,32 @@ class Trick {
                 if (card.suit == suit) {
                     if (card.value > best.value && best.suit != trump) {
                         best = card;
-                        player = i+1;
+                        player = first + i;
                     }
                 } else if (card.suit != suit && card.suit != trump) {
                     continue;
                 } else {
                     if (best.suit != trump) {
                         best = card;
-                        player = i+1;
+                        player = first + i;
                     } else if (card.value > best.value) {
                         best = card;
-                        player = i+1;
+                        player = first + i;
                     }
                 }
-            } else {
+            } else { // if the current card is a trump
                 if (card.suit == trump) {
                     if (card.value > best.value) {
                         best = card;
-                        player = i+1;
+                        player = first + i;
                     }
                 }
             }
         }
 
-        return player;
+        console.log('No of tens: ' + this.tens);
+
+        return ((player-1) % num_players) + 1;
     }
 }
 
@@ -182,6 +183,8 @@ let p1 = new Player(1),
 
 let players = [p1,p2,p3,p4];
 
+// make a while loop for each game and it rotates the player start
+
 let trump;
 
 // choose the trump
@@ -195,22 +198,36 @@ for (let p of players) {
     p.hand = deck.deal(p.hand, 13);
 }
 
-// now that the hands are all dealt, p1 will start.
-// game starts
-let winner = false;
+// now that the hands are all dealt, first player will start.
 
-let trick = new Trick();
+let tricks = [],
+    winning_player = 4;
 
-trick.cards.push(p1.hand[0]);
-trick.cards.push(p2.hand[0]);
-trick.cards.push(p3.hand[0]);
-trick.cards.push(p4.hand[0]);
+// while there is no winner
+while (tricks.length < max_score) {
+    
+    // create a new trick
+    let trick = new Trick(winning_player);
 
+    // find the person who starts
+    let turn = winning_player - 1;
 
+    for (let i = 0; i < players.length; i++) {
 
-let winning_player = trick.get_winner();
-console.log(winning_player);
+        let card = players[turn].hand.pop();
+        console.log(card);
 
-// while (!winner) {
+        trick.cards.push(card);
 
-// }
+        turn = (turn + 1) % num_players;
+    }
+
+    // add the trick to the winning players tricks and add the ten value
+    // players[winning_player-1].tricks.push(trick);
+    // players[winning_player-1].tens += trick.tens;
+
+    winning_player = trick.get_winner(winning_player);
+    console.log('Player ' + winning_player + ' won!');
+
+    tricks.push(trick);
+}
