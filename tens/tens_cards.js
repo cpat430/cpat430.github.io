@@ -12,7 +12,7 @@ function onErr(err) {
 
 // create the suits and the card values to create a deck of cards
 let suits = ['Spades', 'Clubs', 'Diamonds', 'Hearts'];
-let values = [2,3,4,5,6,7,8,9,10,'Jack', 'Queen', 'King', 'Ace'];
+let values = [2,3,4,5,6,7,8,9,10,11,12,13,14];
 
 class Card {
     constructor(suit, value) {
@@ -21,6 +21,17 @@ class Card {
     }
 
     to_string() {
+
+        if (value == 11) {
+            value = 'Jack';
+        } else if (value == 12) {
+            value = 'Queen';
+        } else if (value == 13) {
+            value = 'King';
+        } else if (value == 14) {
+            value = 'Ace'
+        }
+
         return this.value + " of " + this.suit;
     }
 }
@@ -65,6 +76,7 @@ class Player {
     constructor(position) {
         this.position = position;
         this.hand = [];
+        this.tricks = 0;
     }
 
     get_trump() {
@@ -93,6 +105,65 @@ class Player {
     // can play a card
     play(card) {
         console.log('Played ' + card.to_string());
+    }
+}
+
+class Trick {
+    constructor() {
+        this.cards = [];
+    }
+
+    get_suit() {
+        return this.cards[0].suit;
+    }
+
+    // gets the winner assuming all cards played are valid
+    get_winner() {
+        var cards = this.cards,
+            card,
+            suit,
+            best = cards[0],
+            player = 1;
+
+        suit = cards[0].suit;
+
+        console.log(best);
+
+        for (let i = 1; i < cards.length; i++) {
+            card = cards[i];
+
+            console.log(card);
+
+            // if the first card is not a trump
+            if (suit != trump) {
+                // we compare values to the first card
+                if (card.suit == suit) {
+                    if (card.value > best.value && best.suit != trump) {
+                        best = card;
+                        player = i+1;
+                    }
+                } else if (card.suit != suit && card.suit != trump) {
+                    continue;
+                } else {
+                    if (best.suit != trump) {
+                        best = card;
+                        player = i+1;
+                    } else if (card.value > best.value) {
+                        best = card;
+                        player = i+1;
+                    }
+                }
+            } else {
+                if (card.suit == trump) {
+                    if (card.value > best.value) {
+                        best = card;
+                        player = i+1;
+                    }
+                }
+            }
+        }
+
+        return player;
     }
 }
 
@@ -126,3 +197,20 @@ for (let p of players) {
 
 // now that the hands are all dealt, p1 will start.
 // game starts
+let winner = false;
+
+let trick = new Trick();
+
+trick.cards.push(p1.hand[0]);
+trick.cards.push(p2.hand[0]);
+trick.cards.push(p3.hand[0]);
+trick.cards.push(p4.hand[0]);
+
+
+
+let winning_player = trick.get_winner();
+console.log(winning_player);
+
+// while (!winner) {
+
+// }
