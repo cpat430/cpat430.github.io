@@ -15,14 +15,14 @@ class Card {
 
     to_string() {
 
-        if (value == 11) {
-            value = 'Jack';
-        } else if (value == 12) {
-            value = 'Queen';
-        } else if (value == 13) {
-            value = 'King';
-        } else if (value == 14) {
-            value = 'Ace'
+        if (this.value == 11) {
+            this.value = 'Jack';
+        } else if (this.value == 12) {
+            this.value = 'Queen';
+        } else if (this.value == 13) {
+            this.value = 'King';
+        } else if (this.value == 14) {
+            this.value = 'Ace'
         }
 
         return this.value + " of " + this.suit;
@@ -38,6 +38,7 @@ class Deck {
         for (let suit of suits) {
             for (let value of values) {
                 this.deck.push(new Card(suit, value));
+                console.log((new Card(suit,value)).to_string());
             }
         }
     }
@@ -78,10 +79,12 @@ class Player {
         var trump;
 
         // deal five cards to the first player
-        p1.hand = deck.deal(p1.hand, 5);
+        this.hand = deck.deal(this.hand, 5);
 
+        // show the hand that they can choose the trump from
         console.log(p1.hand);
 
+        // to ensure that a trump is chosen
         let index = -1;
 
         // ensures one trump is chosen
@@ -99,6 +102,20 @@ class Player {
     // can play a card
     play(card) {
         console.log('Played ' + card.to_string());
+    }
+
+    check_win(partner) {
+
+        console.log('tens: ' + (this.tens + partner.tens));
+        console.log('tricks: ' + (this.tricks.length + partner.tricks.length));
+
+        if ((this.tens + partner.tens) > 2) {
+            return true;
+        } else if ((this.tens + partner.tens) == 2 && (this.tricks.length + partner.tricks.length) >= 7) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -215,19 +232,30 @@ while (tricks.length < max_score) {
     for (let i = 0; i < players.length; i++) {
 
         let card = players[turn].hand.pop();
-        console.log(card);
+        // console.log(card);
 
         trick.cards.push(card);
 
         turn = (turn + 1) % num_players;
     }
 
-    // add the trick to the winning players tricks and add the ten value
-    // players[winning_player-1].tricks.push(trick);
-    // players[winning_player-1].tens += trick.tens;
-
     winning_player = trick.get_winner(winning_player);
     console.log('Player ' + winning_player + ' won!');
 
+    // add the trick to the winning players tricks and add the ten value
+    players[winning_player-1].tricks.push(trick);
+    players[winning_player-1].tens += trick.tens;
+
+    // get the winning partner
+    let winning_partner = ((winning_player + 1) % num_players) + 1;
+
+    console.log(winning_player + ' ' + winning_partner);
+    
     tricks.push(trick);
+
+    // check if the player who won the trick is winning
+    if (players[winning_player-1].check_win(players[winning_partner-1])) {
+        console.log('Player ' + winning_player + ' and ' + winning_partner + " has won!");
+        break;
+    }
 }
