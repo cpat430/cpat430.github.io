@@ -1,3 +1,5 @@
+var readline = require('readline-sync');
+
 // create a readline interface for reading input from user
 const prompt = require('prompt');
 
@@ -49,8 +51,7 @@ class Deck {
         return this.deck;
     }
 
-    deal(cards) {
-        let hand = [];
+    deal(hand, cards) {
 
         while (hand.length < cards) {
             hand.push(this.deck.pop());
@@ -66,54 +67,25 @@ class Player {
         this.hand = [];
     }
 
-    get_trump(_callback) {
+    get_trump() {
 
         var trump;
 
         // deal five cards to the first player
-        p1.hand = deck.deal(5);
+        p1.hand = deck.deal(p1.hand, 5);
 
-        // let the player choose the trump
-        const properties = [
-            {
-                name: 'trump_in',
-                validator: /^[S|s|C|c|D|d|H|h]{1,1}$/,
-                warning: 'trump can only be [s]pades, [c]lubs, [d]iamonds, [h]earts'
-            },
-        ];
+        console.log(p1.hand);
 
-        prompt.get(properties, function (err, result) {
-            if (err) { 
-                return onErr(err); 
-            }
-            console.log('Command-line input received:');
-            console.log('  Trump: ' + result.trump_in);
-        });
+        var index = -1;
 
-        switch(trump_in) {
-            case 'S':
-            case 's':
-                trump = suits[0];
-                valid = true;
-                break;
-            case 'C':
-            case 'c':
-                trump = suits[1];
-                valid = true;
-                break;
-            case 'D':
-            case 'd':
-                trump = suits[2];
-                valid = true;
-                break;
-            case 'H':
-            case 'h':
-                trump = suits[3];
-                valid = true;
-                break;
+        // ensures one trump is chosen
+        while (index == -1) {
+            index = readline.keyInSelect(suits, 'Which suit?');
         }
 
-        _callback();
+        console.log('Ok, ' + suits[index] + ' is now the trump.');
+
+        trump = suits[index];
 
         return trump;
     }
@@ -139,33 +111,18 @@ let p1 = new Player(1),
 
 let players = [p1,p2,p3,p4];
 
-let trump = null,
-    trump_in,
-    tricks = 0,
-    game = {
-        game_over: false
-    };
+let trump;
 
-// start the game...
 // choose the trump
-p1.get_trump(function() {
-    console.log('done');
-});
+trump = players[0].get_trump();
 
 // we will keep track of the number of rounds so that we can 
 // rotate who is choosing the trump
 
-if (trump != null) {
-    console.log('The trump is now ' + trump);
-}
-
-
-
-// put 13 cards in players hands
+// deal 13 cards each in players hands
 for (let p of players) {
-    p.hand = deck.deal(13);
+    p.hand = deck.deal(p.hand, 13);
 }
 
-p1.play(p1.hand[0]);
-
-
+// now that the hands are all dealt, p1 will start.
+// game starts
